@@ -74,28 +74,28 @@ export default function FullWidthTabs() {
       {
         id: "pablo",
         Title: "Pablo",
-        Description: "A tool designed to help users solve math problems easily.",
+        Description: "PABLO FINAL RELEASE.",
         Video: "/videos/Pablo.mp4",
         Img: "/pablopic.PNG",
       },
       {
-        id: "feelazra2",
+        id: "zaza",
         Title: "ZAZA",
-        Description: "Automated messaging solution for Discord channels.",
+        Description: "ENTA BTRSHD x ADEL EMAM",
         Video: "/videos/ZIAD ZAZA - ENT BTRSHD FINAL.mp4",
         Img: "/entabtrshd.PNG",
       },
       {
         id: "Manefisto",
         Title: "Manefisto",
-        Description: "A note-taking site for creating, storing, and editing notes.",
+        Description: "A note-taking site for creating, storing.",
         Video: "/videos/Manifesto.mp4",
         Img: "/manifestopic.PNG",
       },
       {
         id: "Fien",
         Title: "FEIN",
-        Description: "Description for your fourth manual project.",
+        Description: "TRAVIS SCOOOTO.",
         Video: "/videos/FE!N.mp4",
         Img: "/fein.PNG",
 

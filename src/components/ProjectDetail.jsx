@@ -122,7 +122,6 @@ const ProjectDetails = () => {
                     className="w-full h-auto rounded-xl shadow-lg border border-white/10"
                     controls
                     autoPlay
-                    muted
                     loop
                   >
                     <source src={project.Video} type="video/mp4" />
