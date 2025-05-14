@@ -120,11 +120,9 @@ const TYPING_SPEED = 100;
 const ERASING_SPEED = 50;
 const PAUSE_DURATION = 2000;
 const WORDS = ["Senior Video Editor", "Team Lead"];
-const TECH_STACK = ["Premiere", "AFX", "Photoshop","Illustrator"];
+const TECH_STACK = ["Premiere Pro", "After Effects", "Photoshop"];
 const SOCIAL_LINKS = [
-  { icon: Github, link: "https://github.com/EkiZR" },
-  { icon: Linkedin, link: "https://www.linkedin.com/in/ekizr/" },
-  { icon: Instagram, link: "https://www.instagram.com/ekizr_/?hl=id" }
+  { icon: Instagram, link: "https://www.instagram.com/mohyldin/" }
 ];
 
 

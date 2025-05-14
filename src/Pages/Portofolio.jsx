@@ -124,7 +124,7 @@ export default function FullWidthTabs() {
           </span>
         </h2>
         <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2">
-          Explore manually added projects with full-width videos.
+          Explore My Vision.
         </p>
       </div>
 
