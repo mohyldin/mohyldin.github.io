@@ -2,6 +2,7 @@ import React from "react";
 import {
   Instagram,
   Phone,
+  Mail,
   ExternalLink
 } from "lucide-react";
 
@@ -24,12 +25,22 @@ const socialLinks = [
   // url: "tel:+201552257243", // optional for tel link
   color: "#10B981",
   gradient: "from-[#16a34a] to-[#10b981]"
+},
+{
+  name: "Email",
+  displayName: "Email",
+  subText: "ahmedmohii17@gmail.com",
+  icon: Mail,
+  color: "#3B82F6",
+  gradient: "from-[#2563EB] to-[#3B82F6]"
 }
 ];
 
 const SocialLinks = () => {
   const Instagram = socialLinks.find(link => link.name === "Instagram");
   const Phone = socialLinks.find(link => link.name === "Phone");
+  const Email = socialLinks.find(link => link.name === "Email");
+
 
   return (
     <div className="w-full bg-gradient-to-br from-white/10 to-white/5 rounded-2xl p-6 py-8 backdrop-blur-xl">
@@ -76,6 +87,40 @@ const SocialLinks = () => {
             </div>
           </div>
         </a>
+
+        {/* Email Row */}
+        <a
+          href={Email.url}
+          className="group relative flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-500"
+        >
+          <div
+            className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-r ${Email.gradient}`}
+          />
+          <div className="relative flex items-center gap-4">
+            <div className="relative flex items-center justify-center">
+              <div
+                className="absolute inset-0 opacity-20 rounded-md transition-all duration-500 group-hover:scale-110 group-hover:opacity-30"
+                style={{ backgroundColor: Email.color }}
+              />
+              <div className="relative p-2 rounded-md">
+                <Email.icon
+                  className="w-6 h-6 transition-all duration-500 group-hover:scale-105"
+                  style={{ color: Email.color }}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-lg font-bold pt-[0.2rem] text-gray-200 tracking-tight leading-none group-hover:text-white transition-colors duration-300">
+                {Email.displayName}
+              </span>
+              <span className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                {Email.subText}
+              </span>
+            </div>
+          </div>
+        </a>
+
+
       </div>
     </div>
   );

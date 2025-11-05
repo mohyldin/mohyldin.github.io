@@ -1,8 +1,4 @@
-// --- Cleaned Up FullWidthTabs.js ---
-
-import React, { useEffect, useState, useCallback } from "react";
-import { db, collection } from "../firebase";
-import { getDocs } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@mui/material/styles";
@@ -15,7 +11,8 @@ import CardProject from "../components/CardProject";
 import TechStackIcon from "../components/TechStackIcon";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Code, Award, Boxes } from "lucide-react";
+import { Code, Boxes, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function TabPanel({ children, value, index, ...other }) {
   return (
@@ -51,16 +48,16 @@ function a11yProps(index) {
 const techStacks = [
   { icon: "pr.png", language: "Premiere Pro" },
   { icon: "ae.png", language: "After Effects" },
-  // { icon: "javascript.svg", language: "JavaScript" },
-  // { icon: "tailwind.svg", language: "Tailwind CSS" },
-  // { icon: "reactjs.svg", language: "ReactJS" },
-  // { icon: "vite.svg", language: "Vite" },
-  // { icon: "nodejs.svg", language: "Node JS" },
-  // { icon: "bootstrap.svg", language: "Bootstrap" },
-  // { icon: "firebase.svg", language: "Firebase" },
-  // { icon: "MUI.svg", language: "Material UI" },
-  // { icon: "vercel.svg", language: "Vercel" },
-  // { icon: "SweetAlert.svg", language: "SweetAlert2" },
+  { icon: "ps.png", language: "Adobe PhotoShop" },
+  { icon: "AI.png", language: "Artificial intelligence" },
+
+];
+
+const clients = [
+  { icon: "/clients/redbull.png", name: "Red_Bull", link: "/clients/redbull.png" },
+  { icon: "/clients/cairokee.png", name: "Cairokee", link: "/clients/cairokee.png" },
+  { icon: "/clients/puma.png", name: "Puma", link: "/clients/puma.png" },
+  { icon: "/clients/alahly.png", name: "Al_Ahly", link: "/clients/alahly.png" },
 ];
 
 export default function FullWidthTabs() {
@@ -70,39 +67,21 @@ export default function FullWidthTabs() {
   useEffect(() => {
     AOS.init({ once: false });
 
-    const manualProjects = [
-      {
-        id: "pablo",
-        Title: "Pablo",
-        Description: "PABLO FINAL RELEASE.",
-        Video: "/videos/Pablo.mp4",
-        Img: "/pablopic.PNG",
-      },
-      {
-        id: "zaza",
-        Title: "ZAZA",
-        Description: "ENTA BTRSHD x ADEL EMAM",
-        Video: "/videos/ZIAD ZAZA - ENT BTRSHD FINAL.mp4",
-        Img: "/entabtrshd.PNG",
-      },
-      {
-        id: "Manefisto",
-        Title: "Manefisto",
-        Description: "A note-taking site for creating, storing.",
-        Video: "/videos/Manifesto.mp4",
-        Img: "/manifestopic.PNG",
-      },
-      {
-        id: "Fien",
-        Title: "FEIN",
-        Description: "TRAVIS SCOOOTO.",
-        Video: "/videos/FE!N.mp4",
-        Img: "/fein.PNG",
+    const allVideos = [
+      { id: "pablo", Title: "Pablo", Video: "/videos/Pablo.mp4", Img: "/pablopic.PNG" },
+      { id: "zaza", Title: "ZAZA", Video: "/videos/ZIAD ZAZA - ENT BTRSHD FINAL.mp4", Img: "/entabtrshd.PNG" },
+      { id: "manefisto", Title: "Manefisto", Video: "/videos/Manifesto.mp4", Img: "/manifestopic.PNG" },
+      { id: "fein", Title: "FE!N", Video: "/videos/FE!N.mp4", Img: "/fein.PNG" },
 
-      },
+      { id: "metro", Title: "METRO", Video: "/videos/METRO.mp4", Img: "/Metroo.png" },
+      { id: "nadia_el_gendy", Title: "Nadia El Gendy", Video: "/videos/Nadia El Gendy.mp4", Img: "/Nadia.png" },
+      { id: "sad", Title: "Sad", Video: "/videos/sad.mp4", Img: "/Sad.png" },
+      { id: "blue_elephant", Title: "The Blue Elephant", Video: "/videos/The Blue Elephant Finallll.mp4", Img: "/blue.png" },
+      { id: "tsh", Title: "TSH Final", Video: "/videos/TSH Final.mp4", Img: "/TSH.png" },
+      { id: "yourhonor", Title: "Your Honor", Video: "/videos/YOURHONOR.mp4", Img: "/yourhonor.png" },
     ];
 
-    localStorage.setItem("projects", JSON.stringify(manualProjects));
+    localStorage.setItem("projects", JSON.stringify(allVideos));
   }, []);
 
   const projects = JSON.parse(localStorage.getItem("projects")) || [];
@@ -113,13 +92,15 @@ export default function FullWidthTabs() {
     <div className="md:px-[10%] px-[5%] w-full mt-[3rem] bg-[#000000] overflow-hidden" id="Portofolio">
       <div className="text-center pb-10" data-aos="fade-up" data-aos-duration="1000">
         <h2 className="inline-block text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-          <span style={{
-            color: '#6366f1',
-            backgroundImage: 'linear-gradient(45deg, #67285B 10%, #410D4D 93%)',
-            WebkitBackgroundClip: 'text',
-            backgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
-          }}>
+          <span
+            style={{
+              color: "#6366f1",
+              backgroundImage: "linear-gradient(45deg, #67285B 10%, #410D4D 93%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
             Portfolio Showcase
           </span>
         </h2>
@@ -132,10 +113,13 @@ export default function FullWidthTabs() {
         <AppBar
           position="static"
           elevation={0}
-          sx={{ bgcolor: "transparent", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "20px" }}
+          sx={{
+            bgcolor: "transparent",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            borderRadius: "20px",
+          }}
           className="md:px-4"
         >
-          {/* Tabs remain unchanged */}
           <Tabs
             value={value}
             onChange={handleChange}
@@ -143,7 +127,6 @@ export default function FullWidthTabs() {
             indicatorColor="secondary"
             variant="fullWidth"
             sx={{
-              // Existing styles remain unchanged
               minHeight: "70px",
               "& .MuiTab-root": {
                 fontSize: { xs: "0.9rem", md: "1rem" },
@@ -152,81 +135,68 @@ export default function FullWidthTabs() {
                 textTransform: "none",
                 transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                 padding: "20px 0",
-                zIndex: 1,
                 margin: "8px",
                 borderRadius: "12px",
                 "&:hover": {
                   color: "#ffffff",
                   backgroundColor: "rgba(139, 92, 246, 0.1)",
                   transform: "translateY(-2px)",
-                  "& .lucide": {
-                    transform: "scale(1.1) rotate(5deg)",
-                  },
                 },
                 "&.Mui-selected": {
                   color: "#fff",
-                  background: "linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2))",
-                  boxShadow: "0 4px 15px -3px rgba(139, 92, 246, 0.2)",
-                  "& .lucide": {
-                    color: "#a78bfa",
-                  },
+                  background:
+                    "linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2))",
                 },
               },
-              "& .MuiTabs-indicator": {
-                height: 0,
-              },
-              "& .MuiTabs-flexContainer": {
-                gap: "8px",
-              },
+              "& .MuiTabs-indicator": { height: 0 },
+              "& .MuiTabs-flexContainer": { gap: "8px" },
             }}
           >
-            <Tab icon={<Code className="mb-2 w-5 h-5" />} label="Projects" {...a11yProps(0)} />
-            <Tab
-              icon={<Boxes className="mb-2 w-5 h-5 transition-all duration-300" />}
-              label="Tech Stack"
-              {...a11yProps(1)}
-            />
+            <Tab icon={<Users className="mb-2 w-5 h-5" />} label="Clients Projects" {...a11yProps(0)} />
+            <Tab icon={<Code className="mb-2 w-5 h-5" />} label="Passion Projects" {...a11yProps(1)} />
+            <Tab icon={<Boxes className="mb-2 w-5 h-5" />} label="Tech Stack" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
 
-        <SwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          index={value}
-          onChangeIndex={setValue}
-        >
+        <SwipeableViews axis={theme.direction === "rtl" ? "x-reverse" : "x"} index={value} onChangeIndex={setValue}>
+          {/* Clients */}
           <TabPanel value={value} index={0} dir={theme.direction}>
-            <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
-              {projects.map((project, index) => (
-                <div key={project.id} data-aos="fade-up" data-aos-duration={1000 + index * 100}>
-                  <CardProject
-                    Img={project.Img}
-                    Title={project.Title}
-                    // Description={project.Description}
-                    // Link={project.Link}
-                    id={project.id}
-                    Video={project.Video}
-                  />
-                </div>
-              ))}
-            </div>
-          </TabPanel>
-
-          <TabPanel value={value} index={1} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden pb-[5%]">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">
-                {techStacks.map((stack, index) => (
-                  <div
-                    key={index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
-                  >
-                    <TechStackIcon TechStackIcon={stack.icon} Language={stack.language} />
+                {clients.map((client, index) => (
+                  <div key={index} data-aos="fade-up" data-aos-duration={1000 + index * 100}>
+                    <Link to={`/client/${client.name}`}>
+                      <TechStackIcon TechStackIcon={client.icon} Language={client.name} />
+                    </Link>
                   </div>
                 ))}
               </div>
             </div>
           </TabPanel>
 
+          {/* Passion Projects */}
+          <TabPanel value={value} index={1} dir={theme.direction}>
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
+              {projects.map((project, index) => (
+                <div key={project.id} data-aos="fade-up" data-aos-duration={1000 + index * 100}>
+                  <CardProject Img={project.Img} Title={project.Title} id={project.id} Video={project.Video} />
+                </div>
+              ))}
+            </div>
+          </TabPanel>
+
+          {/* Tech Stack */}
+          <TabPanel value={value} index={2} dir={theme.direction}>
+            <div className="container mx-auto flex justify-center items-center overflow-hidden pb-[5%]">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">
+                {techStacks.map((stack, index) => (
+                  <div key={index} data-aos="fade-up" data-aos-duration={1000 + index * 100}>
+                    <TechStackIcon TechStackIcon={stack.icon} Language={stack.language} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </TabPanel>
         </SwipeableViews>
       </Box>
     </div>
